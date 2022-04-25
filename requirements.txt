@@ -1,0 +1,20 @@
+# this is the requirements.txt file...
+
+#
+# DEVELOPMENT / PRODUCTION
+#
+
+python-dotenv
+pandas
+requests
+sendgrid==6.6.0
+
+flask
+
+gunicorn
+
+#
+# TEST
+#
+pytest
+
