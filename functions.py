@@ -1,4 +1,20 @@
+import requests
+import json
 
-ergast_url = http://ergast.com/api/f1/2008/5/results
+#products_url = "https://ergast.com/api/f1/2021/5/driverStandings.json"
 
-print(ergast_url[0])
+products_url = "https://ergast.com/api/f1/2021/5/driver/alonso/laps.json"
+
+products_response = requests.get(products_url)
+
+
+products = json.loads(products_response.text)
+print(products['MRData'])
+
+#driver_data = []
+#for k,v in products['MRData']['StandingsTable'].items():
+ #   driver_data.append({
+         
+
+
+    #})
