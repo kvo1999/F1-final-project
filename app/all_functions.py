@@ -4,39 +4,45 @@ import statistics
 import datetime
 
 def average_finish(driver_lname):
-    ergast_url = f"https://ergast.com/api/f1/2021/drivers/{driver_lname}/results.json"
-    ergast_response = requests.get(ergast_url)
-    ergast = json.loads(ergast_response.text)
+
+  ergast_url = f"https://ergast.com/api/f1/2021/drivers/{driver_lname}/results.json"
+  ergast_response = requests.get(ergast_url)
+  ergast = json.loads(ergast_response.text)
     
-    n = 0
-    x = 0
+  n = 0
 
-    grid = []
-    finish = []
+  grid = []
+  finish = []
 
-    for line in ergast['MRData']['RaceTable']['Races']:
-        finish_result = line['Results'][0]['position']
-        starting_grid = line['Results'][0]['grid']
-        finish.append(int(finish_result))
-        grid.append(int(starting_grid))
-        n = n + 1
+  for line in ergast['MRData']['RaceTable']['Races']:
+    finish_result = line['Results'][0]['position']
+    starting_grid = line['Results'][0]['grid']
+    finish.append(int(finish_result))
+    grid.append(int(starting_grid))
+    n = n + 1
+  
+  avg_grid = round(statistics.mean(grid))
+  avg_finish = round(statistics.mean(finish))
 
-    print("Average starting grid position:", int(statistics.mean(grid)))
-    print("Average finish position:", int(statistics.mean(finish)))
+  result = {"Average Starting Grid": avg_grid, "Average Finishing Position": avg_finish}
+
+  return result
 
 
 def reason_DNF(driver_lname):
-    ergast_url = f"https://ergast.com/api/f1/2021/drivers/{driver_lname}/status.json"
-    ergast_response = requests.get(ergast_url)
-    ergast = json.loads(ergast_response.text)
+  ergast_url = f"https://ergast.com/api/f1/2021/drivers/{driver_lname}/status.json"
+  ergast_response = requests.get(ergast_url)
+  ergast = json.loads(ergast_response.text)
 
-    n = 0
+  n = 0
 
-    for line in ergast['MRData']['StatusTable']['Status']:
-        finish_status = ergast['MRData']['StatusTable']['Status'][n]['status']
-        number_finish_status = ergast['MRData']['StatusTable']['Status'][n]['count']
-        print(finish_status, number_finish_status)
-        n = n + 1
+  for line in ergast['MRData']['StatusTable']['Status']:
+    finish_status = ergast['MRData']['StatusTable']['Status'][n]['status']
+    number_finish_status = ergast['MRData']['StatusTable']['Status'][n]['count']
+    print(finish_status, number_finish_status)
+    n = n + 1
+
+    
 
 
 def podium_result(driver_lname):
@@ -111,8 +117,19 @@ def qualifying_time(circuit):
     key_min = min(qual_times.keys(), key=(lambda k: qual_times[k]))
     print("Fastest Qualifying Time:", min(qual_times, key=qual_times.get), qual_times[key_min])
 
-def avg_pitstop_time(racer, option):
+def avg_pitstop_time(driver_lname, option):
+  """
+  Calculates a driver's average pitstop time, either for a single round or the whole season.
 
+  Params:
+    driver_lname (str): the last name of a driver, like "alonso"
+    option (str): a letter corresponding to the user's choice ("R" for round or "S" for season)
+  
+  Returns:
+    avg_time (float): a float of the driver's average pitstop time
+
+  Invoke like this: avg_pitstop_time("alonso, "R")
+  """
   if option.upper() == "R":
 
     round = input("What round do you want to see data for? ")
@@ -124,7 +141,7 @@ def avg_pitstop_time(racer, option):
     pitstop_data = json.loads(response.text)
 
     for pitstop in pitstop_data["MRData"]["RaceTable"]["Races"][0]["PitStops"]:
-      if pitstop["driverId"] == racer:
+      if pitstop["driverId"] == driver_lname:
         avg_time = pitstop["duration"]
 
   elif option.upper() == "S":
@@ -134,7 +151,7 @@ def avg_pitstop_time(racer, option):
     season_pitstop_time = 0
 
     while round < total_rounds:
-      pit_stop_url = "https://ergast.com/api/f1/2021/" + str(round) + "/drivers/" + racer.lower() + "/pitstops.json"
+      pit_stop_url = "https://ergast.com/api/f1/2021/" + str(round) + "/drivers/" + driver_lname.lower() + "/pitstops.json"
       response = requests.get(pit_stop_url)
       driver_data = json.loads(response.text)
 
@@ -151,6 +168,18 @@ def avg_pitstop_time(racer, option):
   return avg_time
 
 def to_seconds(time):
+  """
+  Converts a string of time into a float of the number of seconds if the format is MM:SS.sss.
+  Converts a string of time into a float if the format is SS.sss.
+
+  Parameters:
+    time (str): a string that corresponds to time, either in the format MM:SS.sss or SS.sss
+
+  Returns:
+    time (float): a float of the number of seconds
+
+  Invoke like this: to_seconds("34:18.580")
+  """
   if ":" in time:
     time = datetime.datetime.strptime(time, "%M:%S.%f")
     minutes = time.minute
