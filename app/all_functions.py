@@ -3,6 +3,8 @@ import json
 import statistics
 import datetime
 
+#FUNCTIONS NEED TO RETURN DATA 
+
 def average_finish(driver_lname):
     ergast_url = f"https://ergast.com/api/f1/2021/drivers/{driver_lname}/results.json"
     ergast_response = requests.get(ergast_url)
