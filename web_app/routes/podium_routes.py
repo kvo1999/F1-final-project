@@ -2,7 +2,7 @@
 
 from flask import Blueprint, request, render_template
 
-#from app.all_functions import ...
+from app.all_functions import podium_result
 
 podium_routes = Blueprint("podium_routes", __name__)
 

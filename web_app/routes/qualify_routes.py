@@ -2,7 +2,7 @@
 
 from flask import Blueprint, request, render_template
 
-#from app.all_functions import ...
+from app.all_functions import qualifying_time
 
 qualify_routes = Blueprint("qualify_routes", __name__)
 

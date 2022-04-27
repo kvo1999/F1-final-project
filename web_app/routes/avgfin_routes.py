@@ -2,7 +2,7 @@
 
 from flask import Blueprint, request, render_template
 
-#from app.all_functions import ...
+from app.all_functions import average_finish
 
 avgfin_routes = Blueprint("avgfin_routes", __name__)
 
