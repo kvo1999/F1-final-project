@@ -43,3 +43,13 @@ export FLASK_APP=web_app
 flask run
 ```
 
+
+###
+start with drop downs, driver names, statistics 
+form with 2 drop downs and submission button 
+#form will have method of post and action of some kind of route 
+#set up another route to handle form data 
+#route we send data to will make request to API for given name & characteristic 
+#get data back 
+#that route will render another page
+#pass driver data to page (FROM FUNCTIONS)
