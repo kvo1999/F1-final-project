@@ -25,8 +25,8 @@ for line in ergast['MRData']['RaceTable']['Races']:
    grid.append(int(starting_grid))
    n = n + 1
 
-print(grid)
-print(finish)
+#print(grid)
+#print(finish)
 print("Average starting grid position:", int(statistics.mean(grid)))
 print("Average finish position:", int(statistics.mean(finish)))
 
