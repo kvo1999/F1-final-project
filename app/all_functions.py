@@ -37,12 +37,20 @@ def reason_DNF(driver_lname):
   ergast = json.loads(ergast_response.text)
 
   n = 0
+  status = []
+  count = []
 
   for line in ergast['MRData']['StatusTable']['Status']:
     finish_status = ergast['MRData']['StatusTable']['Status'][n]['status']
+    status.append(finish_status)
     number_finish_status = ergast['MRData']['StatusTable']['Status'][n]['count']
-    print(finish_status, number_finish_status)
+    count.append(number_finish_status)
+    #print(finish_status, number_finish_status)
     n = n + 1
+
+  result = {"Finishing Status": status, "Count": count}
+
+  return result
 
     
 
@@ -192,3 +200,34 @@ def to_seconds(time):
     time = float(time)
 
   return time
+
+def lap_time_data():
+  results_url = "https://ergast.com/api/f1/2021/drivers/" + driver_lname.lower() + "/results.json"
+  response = requests.get(results_url)
+  results_data = json.loads(response.text)
+
+  lap_info = []
+
+  for race in results_data["MRData"]["RaceTable"]["Races"]:
+    lap_info.append({"round": int(race["round"]), "number of laps": int(race["Results"][0]["laps"])})
+
+  lap_times = []
+  lap_number = 1
+
+  for round in lap_info:
+    while lap_number < round["number of laps"]:
+
+      lap_url = "http://ergast.com/api/f1/2021/" + str(round["round"]) + "/drivers/" + driver_lname.lower() + "/laps/" + str(lap_number) + ".json"
+      response = requests.get(lap_url)
+      laps = json.loads(response.text)
+      lap_time = laps["MRData"]["RaceTable"]["Races"][0]["Laps"][0]["Timings"][0]["time"]
+      lap_times.append(to_seconds(lap_time))
+      lap_number = lap_number + 1
+
+  fastest_time = max(lap_times)
+  average_time = statistics.mean(lap_times)
+
+  result = {"Fastest Lap Time": fastest_time, "Average Lap Time": average_time}
+
+  return result
+
