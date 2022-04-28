@@ -3,6 +3,8 @@ import json
 import statistics
 import datetime
 
+total_rounds = 22 #global variable to hold the number of rounds in the f1 2021 season
+
 #FUNCTIONS NEED TO RETURN DATA 
 
 def average_finish(driver_lname):
@@ -127,55 +129,46 @@ def qualifying_time(circuit):
     key_min = min(qual_times.keys(), key=(lambda k: qual_times[k]))
     print("Fastest Qualifying Time:", min(qual_times, key=qual_times.get), qual_times[key_min])
 
-def avg_pitstop_time(driver_lname, option):
+def avg_pitstop_time(driver_lname):
   """
   Calculates a driver's average pitstop time, either for a single round or the whole season.
 
   Params:
     driver_lname (str): the last name of a driver, like "alonso"
-    option (str): a letter corresponding to the user's choice ("R" for round or "S" for season)
   
   Returns:
-    avg_time (float): a float of the driver's average pitstop time
+    avg_time (float): a float of the driver's average pitstop time 
 
-  Invoke like this: avg_pitstop_time("alonso, "R")
+  Invoke like this: avg_pitstop_time("alonso")
   """
-  if option.upper() == "R":
+  round = 1
+  times_per_round = []
+  stops_per_round = []
 
-    round = input("What round do you want to see data for? ")
+  while round <= total_rounds:
 
-    pit_stop_url = "https://ergast.com/api/f1/2021/" + str(round) + "/pitstops.json"
-  
+    pit_stop_url = "https://ergast.com/api/f1/2021/" + str(round) + "/drivers/" + driver_lname.lower() + "/pitstops.json"
     response = requests.get(pit_stop_url)
+    driver_data = json.loads(response.text)
 
-    pitstop_data = json.loads(response.text)
+    if int(driver_data["MRData"]["total"]) > 0:
 
-    for pitstop in pitstop_data["MRData"]["RaceTable"]["Races"][0]["PitStops"]:
-      if pitstop["driverId"] == driver_lname:
-        avg_time = pitstop["duration"]
+      num_pitstops = 0
+      total_round_time = 0
 
-  elif option.upper() == "S":
-    total_rounds = 23
-    round = 1
-    stop_counter = 0
-    season_pitstop_time = 0
-
-    while round < total_rounds:
-      pit_stop_url = "https://ergast.com/api/f1/2021/" + str(round) + "/drivers/" + driver_lname.lower() + "/pitstops.json"
-      response = requests.get(pit_stop_url)
-      driver_data = json.loads(response.text)
-
-      if int(driver_data["MRData"]["total"]) > 0:
-        for stop in driver_data["MRData"]["RaceTable"]["Races"][0]["PitStops"]:
-          time = to_seconds(stop["duration"])
-          season_pitstop_time = season_pitstop_time + time
-          stop_counter = stop_counter + 1
+      for stop in driver_data["MRData"]["RaceTable"]["Races"][0]["PitStops"]:
+    
+        total_round_time = total_round_time + to_seconds(stop["duration"])
+        num_pitstops = num_pitstops + 1
   
-      round = round + 1
+      times_per_round.append(total_round_time)
+      stops_per_round.append(num_pitstops)
+  
+    round = round + 1
 
-    avg_time = season_pitstop_time / stop_counter
+  avg_season_time = sum(times_per_round) / sum(stops_per_round)
 
-  return avg_time
+  return avg_season_time
 
 def to_seconds(time):
   """
@@ -201,7 +194,18 @@ def to_seconds(time):
 
   return time
 
-def lap_time_data():
+def lap_time_stats(driver_lname):
+  """
+  Calculates a driver's fastest lap time and average lap time.
+
+  Parameters:
+    driver_lname (str): the last name of a driver, like "alonso"
+
+  Returns:
+    result (dict): a dictionary containing a driver's fastest lap time and average lap time
+
+  Invoke like this: lap_time_stats("alonso")
+  """
   results_url = "https://ergast.com/api/f1/2021/drivers/" + driver_lname.lower() + "/results.json"
   response = requests.get(results_url)
   results_data = json.loads(response.text)
