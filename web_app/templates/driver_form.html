@@ -1,0 +1,19 @@
+{% extends "bootstrap_layout.html" %}
+{% set active_page = "driver_form" %}
+
+{% block content %}
+
+    <h2>Driver Statistics Forms</h2>
+
+    <p>Request a statistics summary for an F1 driver...</p>
+
+    <form action="/avgfin" method="POST">
+
+        <label>Driver Name:</label>
+        <input type="text" name="driver_lname" placeholder="hamilton" value="hamilton">
+        <br>
+
+        <button>Submit</button>
+    </form>
+
+{% endblock %}

@@ -1,27 +1,35 @@
 # web_app/routes/avgfin_routes.py
 
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template, redirect, flash 
 
 from app.all_functions import average_finish
 
 avgfin_routes = Blueprint("avgfin_routes", __name__)
 
-@avgfin_routes.route("/avgfinish.json")
-def avg_f1_api():
-    print("DRIVER STATS")
+@avgfin_routes.route("/driver/form")
+def driver_form():
+    print("F1 DRIVER STAT FORM...")
+    return render_template("driver_form.html")
 
-    url_params = dict(request.args)
-    print("URL PARAMS:" , url_params)
+@avgfin_routes.route("/avgfin", methods=["GET", "POST"])
+def get_avg():
 
-    driver_lname = url_params.get("driver_lname") or "hamilton"  
+    if request.method == "GET":
+        print("URL PARAMS:", dict(request.args))
+        request_data = dict(request.args)
+    elif request.method == "POST": # the form will send a POST
+        print("FORM DATA:", dict(request.form))
+        request_data = dict(request.form)
+
+    driver_lname = request_data.get("driver_lname") or "hamilton"
 
     results = average_finish(driver_lname)
-
     if results:
-        return jsonify(results)
+        flash("Driver stats generated successfully!", "success")
+        return render_template("driver_result.html", driver_lname= driver_lname, results=results)
     else:
-        return jsonify({"message: Invalid driver ID, please try again."}), 404
-
+        flash("Driver Name Error. Please try again!", "danger")
+        return redirect("/home")
 
 
 

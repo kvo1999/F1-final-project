@@ -158,6 +158,10 @@ def avg_pitstop_time(driver_lname):
 
   return avg_season_time
 
+
+#could test this one
+#assert this, to second=this
+#don't worry about until website is fixed
 def to_seconds(time):
   """
   Converts a string of time into a float of the number of seconds if the format is MM:SS.sss.

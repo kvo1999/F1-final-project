@@ -1,35 +1,10 @@
-#start with drop downs, driver names, statistics 
-# form with 2 drop downs and submission button 
-#form will have method of post and action of some kind of route 
-#set up another route to handle form data 
-#route we send data to will make request to API for given name & characteristic 
-#get data back 
-#that route will render another page
-#pass driver data to page (FROM FUNCTIONS)
+{% extends "bootstrap_layout.html" %}
+{% set active_page = "home" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Formula 1 Driver Statistics</title>
-</head>
-<body>
+{% block content %}
 
-    <h1>Please select a driver and the stats you wish to view:</h1>
+    <h1>Formula 1 Driver Statistics</h1>
 
-    <p>This is a paragraph on the "home" page.</p>
+    <p>Analyze any driver for the 2021 Formula 1 season!</p>
 
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/hello">Hello</a></li>
-        </ul>
-    </nav>
-
-    <footer>
-        <p>My footer</p>
-    </footer>
-
-</body>
-</html>
+{% endblock %}
