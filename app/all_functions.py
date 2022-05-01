@@ -5,7 +5,6 @@ import datetime
 
 total_rounds = 22 #global variable to hold the number of rounds in the f1 2021 season
 
-#FUNCTIONS NEED TO RETURN DATA 
 
 def average_finish(driver_lname):
 
@@ -28,9 +27,9 @@ def average_finish(driver_lname):
   avg_grid = round(statistics.mean(grid))
   avg_finish = round(statistics.mean(finish))
 
-  result = {"Average Starting Grid": avg_grid, "Average Finishing Position": avg_finish}
+  resultfin = {"Average Starting Grid": avg_grid, "Average Finishing Position": avg_finish}
 
-  return result
+  return resultfin
 
 
 def reason_DNF(driver_lname):
@@ -50,12 +49,11 @@ def reason_DNF(driver_lname):
     #print(finish_status, number_finish_status)
     n = n + 1
 
-  result = {"Finishing Status": status, "Count": count}
+  resultDNF = {"Finishing Status": status, "Count": count}
 
-  return result
+  return resultDNF
 
     
-
 
 def podium_result(driver_lname):
   circuit=["yas_marina","jeddah","bahrain","catalunya","istanbul","americas","sochi","monza","zandvoort","spa","hungaroring","silverstone","ricard","BAK","rodriguez","interlagos","losail","monaco","portimao","imola", "red_bull_ring"]
@@ -74,24 +72,8 @@ def podium_result(driver_lname):
     if result == "3":
       podiums.append(result)
 
-    #if podiums.count("1") == 1:
-    #    print(podiums.count("1"), "first place finish")
-    #elif podiums.count("1")>1 or podiums.count("1")==0:
-    #    print(podiums.count("1"), "first place finishes")
-    #elif podiums.count("2") == 1:
-    #    print(podiums.count("2"), "second place finish")
-    #elif podiums.count("2")>1 or podiums.count("2")==0:
-    #    print(podiums.count("2"), "second place finishes")
-    #elif podiums.count("3") == 1:
-    #    print(podiums.count("3"), "third place finish")
-    #elif podiums.count("3")>1 or podiums.count("3")==0:
-    #    print(podiums.count("3"), "third place finishes")
-
-
-    #print(podiums.count("1"), "first place finishes")
-    #print(podiums.count("2"), "second place finishes")
-    #print(podiums.count("3"), "third place finishes")
-  return podiums
+  resultpodium = {"First place: ":podiums.count("1"), "Second place: ":podiums.count("2"), "Third place: ":podiums.count("3")}
+  return resultpodium
 
 
 def qualifying_time(circuit):
@@ -131,7 +113,8 @@ def qualifying_time(circuit):
   key_min = min(qual_times.keys(), key=(lambda k: qual_times[k]))
   drivername= min(qual_times, key=qual_times.get)
   drivertime= qual_times[key_min]
-  return drivername, drivertime
+  qualdriver= {drivername:drivertime}
+  return qualdriver
 
 
 def avg_pitstop_time(driver_lname):
@@ -236,7 +219,7 @@ def lap_time_stats(driver_lname):
   fastest_time = max(lap_times)
   average_time = statistics.mean(lap_times)
 
-  result = {"Fastest Lap Time": fastest_time, "Average Lap Time": average_time}
+  resultlap = {"Fastest Lap Time": fastest_time, "Average Lap Time": average_time}
 
-  return result
+  return resultlap
 
