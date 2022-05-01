@@ -45,7 +45,7 @@ flask run
 
 
 ###
-start with drop downs, driver names, statistics 
+#start with drop downs, driver names, statistics 
 form with 2 drop downs and submission button 
 #form will have method of post and action of some kind of route 
 #set up another route to handle form data 
