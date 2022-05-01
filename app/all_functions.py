@@ -88,9 +88,11 @@ def podium_result(driver_lname):
     #    print(podiums.count("3"), "third place finishes")
 
 
-    print(podiums.count("1"), "first place finishes")
-    print(podiums.count("2"), "second place finishes")
-    print(podiums.count("3"), "third place finishes")
+    #print(podiums.count("1"), "first place finishes")
+    #print(podiums.count("2"), "second place finishes")
+    #print(podiums.count("3"), "third place finishes")
+    return podiums
+
 
 def qualifying_time(circuit):
     
@@ -127,7 +129,12 @@ def qualifying_time(circuit):
             pass
 
     key_min = min(qual_times.keys(), key=(lambda k: qual_times[k]))
-    print("Fastest Qualifying Time:", min(qual_times, key=qual_times.get), qual_times[key_min])
+
+    fastest_qtime = min(qual_times, key=qual_times.get), qual_times[key_min])
+
+    return fastest_qtime
+
+    #print("Fastest Qualifying Time:", min(qual_times, key=qual_times.get), qual_times[key_min])
 
 def avg_pitstop_time(driver_lname):
   """
