@@ -3,17 +3,60 @@
 
 {% block content %}
 
+<style>
+    .button {
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 10px 10px;
+      cursor: pointer;
+      height:75px;
+      width:300px;
+    }
+    
+    .button1 {background-color: #00D2BE;} /* Mercedes */
+    .button2 {background-color: #DC0000;} /* Ferrari */
+    .button3 {background-color: #0600EF;} /* Red Bull Racing */
+    .button4 {background-color: #0090FF;} /* Alpine */
+    .button5 {background-color: #D5D5D5;} /* Haas */
+    .button6 {background-color: #006F62;} /* Aston Martin */
+    .button7 {background-color: #2B4562;} /* Alpha Tauri */
+    .button8 {background-color: #FF8700;} /* McLaren */
+    .button9 {background-color: #900000;} /* Alpha Romeo */
+    .button10 {background-color: #005AFF;} /* Williams */
+
+</style>
+
     <h2>Driver Statistics Forms</h2>
 
     <p>Request a statistics summary for an F1 driver...</p>
 
-    <form action="/avgfin" method="POST">
+        <button class="button button1">Hamilton</button>
+        <button class="button button1">Bottas</button> <br>
+        <button class="button button3">Verstappen</button>
+        <button class="button button3">Perez</button> <br>
+        <button class="button button2">Leclerc</button>
+        <button class="button button2">Sainz</button> <br>
+        <button class="button button8">Norris</button>
+        <button class="button button8">Ricciardo</button> <br>
+        <button class="button button4">Alonso</button>
+        <button class="button button4">Ocon</button> <br>
+        <button class="button button7">Gasly</button>
+        <button class="button button7">Tsunoda</button> <br>
+        <button class="button button6">Vettel</button>
+        <button class="button button6">Stroll</button> <br>
+        <button class="button button10">Russell</button>
+        <button class="button button10">Latifi</button> <br>
+        <button class="button button9">Giovinazzi</button>
+        <button class="button button9">Raikkonen</button> <br>
+        <button class="button button5">Schumacher</button>
+        <button class="button button5">Mazepin</button> <br>
 
-        <label>Driver Name:</label>
-        <input type="text" name="driver_lname" placeholder="hamilton" value="hamilton">
-        <br>
 
-        <button>Submit</button>
     </form>
 
 {% endblock %}
