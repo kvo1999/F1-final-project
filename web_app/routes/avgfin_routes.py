@@ -26,7 +26,7 @@ def get_avg():
     results = average_finish(driver_lname)
     if results:
         flash("Driver stats generated successfully!", "success")
-        return render_template("driver_result.html", driver_lname= driver_lname, results=results)
+        return render_template("driver_result.html", driver_lname=driver_lname, results=results)
     else:
         flash("Driver Name Error. Please try again!", "danger")
         return redirect("/home")
