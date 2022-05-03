@@ -1,8 +1,6 @@
 {% extends "bootstrap_layout.html" %}
 {% set active_page = "driver_form" %}
-
 {% block content %}
-
 <style>
     .button {
       border: none;
@@ -17,7 +15,6 @@
       height:75px;
       width:300px;
     }
-    
     .button1 {background-color: #00D2BE;} /* Mercedes */
     .button2 {background-color: #DC0000;} /* Ferrari */
     .button3 {background-color: #0600EF;} /* Red Bull Racing */
@@ -28,12 +25,10 @@
     .button8 {background-color: #FF8700;} /* McLaren */
     .button9 {background-color: #900000;} /* Alpha Romeo */
     .button10 {background-color: #005AFF;} /* Williams */
-
 </style>
-
     <h2>Driver Statistics Forms</h2>
-
     <p>Request a statistics summary for an F1 driver...</p>
+        <a class="button button1" href="/drivers/hamilton" role="button">Hamilton TEST</a>
 
         <button class="button button1">Hamilton</button>
         <button class="button button1">Bottas</button> <br>
@@ -55,8 +50,5 @@
         <button class="button button9">Raikkonen</button> <br>
         <button class="button button5">Schumacher</button>
         <button class="button button5">Mazepin</button> <br>
-
-
     </form>
-
 {% endblock %}
