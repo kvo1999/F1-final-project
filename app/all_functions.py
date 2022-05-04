@@ -218,3 +218,18 @@ def lap_time_stats(driver_lname):
 
   return resultlap
 
+def master_function(driver_lname):
+    resultfin= average_finish(driver_lname)
+    resultDNF= reason_DNF(driver_lname)
+    resultpodium= podium_result(driver_lname)
+    avg_season_time= avg_pitstop_time(driver_lname)
+    resultlap= lap_time_stats(driver_lname)
+
+    all_results = {"average_finish": resultfin, "reasons_DNF":resultDNF, "podium_results":resultpodium, "avg_pitstop":avg_season_time, "lap_results":resultlap}
+
+    return all_results
+
+if __name__ == "__main__":
+    user_input = input("driver name: ")
+    results = master_function(user_input)
+    print(results)
