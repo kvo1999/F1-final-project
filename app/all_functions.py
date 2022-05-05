@@ -7,6 +7,20 @@ total_rounds = 22 #global variable to hold the number of rounds in the f1 2021 s
 
 
 def average_finish(driver_lname):
+  """
+  Calculates a driver's average starting grid position and average finishing position.
+
+  Params:
+    driver_lname (str): a string of the driver's last name, like "alonso"
+  
+  Returns:
+    resultfin (dict): a dictionary containing two key-value pairs: {"Average Starting Grid": avg_grid, "Average Finishing Position": avg_finish}
+      avg_grid (int): an integer of the driver's average starting grid position
+      avg_finish (int): an integer of the driver's average finishing position
+
+  Invoke like this: average_finish("alonso")
+  Example return value: {"Average Starting Grid": 3, "Average Finishing Position": 5}
+  """
 
   ergast_url = f"https://ergast.com/api/f1/2021/drivers/{driver_lname}/results.json"
   ergast_response = requests.get(ergast_url)
@@ -32,6 +46,20 @@ def average_finish(driver_lname):
   return resultfin
 
 def reason_DNF(driver_lname):
+  """
+  Outlines all the reasons a driver did not finish a race and how many times this happened to them.
+
+  Params:
+    driver_lname (str): a string of the driver's last name, like "alonso"
+
+  Returns:
+    resultDNF (dict): a dictionary containing two key-value pairs:
+      status (list): a list of all the driver's finishing statuses
+      count (list): a list corresponding the number of times a driver had a certain finishing status
+    
+  Invoke like this: reason_DNF("alonso")
+  Example return value: {"Finishing Status": ['Finished', 'Collision'], "Count": ['21','1']}
+  """
   ergast_url = f"https://ergast.com/api/f1/2021/drivers/{driver_lname}/status.json"
   ergast_response = requests.get(ergast_url)
   ergast = json.loads(ergast_response.text)
@@ -53,6 +81,11 @@ def reason_DNF(driver_lname):
   return resultDNF
 
 def podium_result(driver_lname):
+  """
+  
+
+  """
+
   circuit=["yas_marina","jeddah","bahrain","catalunya","istanbul","americas","sochi","monza","zandvoort","spa","hungaroring","silverstone","ricard","BAK","rodriguez","interlagos","losail","monaco","portimao","imola", "red_bull_ring"]
 
   podiums=[]
@@ -73,6 +106,11 @@ def podium_result(driver_lname):
   return resultpodium
 
 def qualifying_time(circuit):
+  """
+  Determines a driver's fastest qualifying time.
+
+  
+  """
     
   drivers=["bottas","hamilton","max_verstappen","norris","ricciardo","gasly","sainz","leclerc","perez","giovinazzi","vettel","stroll","alonso","ocon","russell","latifi","tsunoda","mick_schumacher","kubica","mazepin"]
 
@@ -114,7 +152,7 @@ def qualifying_time(circuit):
 
 def avg_pitstop_time(driver_lname):
   """
-  Calculates a driver's average pitstop time, either for a single round or the whole season.
+  Calculates a driver's average pitstop time for the season.
 
   Params:
     driver_lname (str): the last name of a driver, like "alonso"
@@ -124,13 +162,13 @@ def avg_pitstop_time(driver_lname):
 
   Invoke like this: avg_pitstop_time("alonso")
   """
-  round = 1
+  r = 1
   times_per_round = []
   stops_per_round = []
 
-  while round <= total_rounds:
+  while r <= total_rounds:
 
-    pit_stop_url = "https://ergast.com/api/f1/2021/" + str(round) + "/drivers/" + driver_lname.lower() + "/pitstops.json"
+    pit_stop_url = "https://ergast.com/api/f1/2021/" + str(r) + "/drivers/" + driver_lname.lower() + "/pitstops.json"
     response = requests.get(pit_stop_url)
     driver_data = json.loads(response.text)
 
@@ -147,16 +185,15 @@ def avg_pitstop_time(driver_lname):
       times_per_round.append(total_round_time)
       stops_per_round.append(num_pitstops)
   
-    round = round + 1
+    r = r + 1
 
-  avg_season_time = sum(times_per_round) / sum(stops_per_round)
+  avg_season_time = round((sum(times_per_round) / sum(stops_per_round)),3)
 
   return avg_season_time
 
 def to_seconds(time):
   """
-  Converts a string of time into a float of the number of seconds if the format is MM:SS.sss.
-  Converts a string of time into a float if the format is SS.sss.
+  Converts a string of time into a float of the number of seconds.
 
   Parameters:
     time (str): a string that corresponds to time, either in the format MM:SS.sss or SS.sss
@@ -167,6 +204,10 @@ def to_seconds(time):
   Invoke like this: to_seconds("34:18.580")
   """
   if ":" in time:
+
+    if "." not in time:
+      time = time + ".0"
+
     time = datetime.datetime.strptime(time, "%M:%S.%f")
     minutes = time.minute
     seconds = time.second
@@ -201,24 +242,28 @@ def lap_time_stats(driver_lname):
   lap_times = []
   lap_number = 1
 
-  for round in lap_info:
-    while lap_number < round["number of laps"]:
+  for r in lap_info:
+    while lap_number < r["number of laps"]:
 
-      lap_url = "http://ergast.com/api/f1/2021/" + str(round["round"]) + "/drivers/" + driver_lname.lower() + "/laps/" + str(lap_number) + ".json"
+      lap_url = "http://ergast.com/api/f1/2021/" + str(r["round"]) + "/drivers/" + driver_lname.lower() + "/laps/" + str(lap_number) + ".json"
       response = requests.get(lap_url)
       laps = json.loads(response.text)
       lap_time = laps["MRData"]["RaceTable"]["Races"][0]["Laps"][0]["Timings"][0]["time"]
       lap_times.append(to_seconds(lap_time))
       lap_number = lap_number + 1
 
-  fastest_time = max(lap_times)
-  average_time = statistics.mean(lap_times)
+  fastest_time = round(min(lap_times),3)
+  average_time = round(statistics.mean(lap_times),3)
 
   resultlap = {"Fastest Lap Time": fastest_time, "Average Lap Time": average_time}
 
   return resultlap
 
 def master_function(driver_lname):
+  """
+  
+
+  """
     resultfin= average_finish(driver_lname)
     resultDNF= reason_DNF(driver_lname)
     resultpodium= podium_result(driver_lname)
