@@ -117,7 +117,15 @@ def podium_result(driver_lname):
   else:
     for track in circuitraikkonen:
       request_url = f"https://ergast.com/api/f1/2021/drivers/{driver_lname}/circuits/{track}/results.json"
-
+      response = requests.get(request_url)
+      parsed_response = json.loads(response.text)
+      result = parsed_response['MRData']['RaceTable']['Races'][0]["Results"][0]["position"]
+      if result == "1":
+        podiums.append(result)
+      if result == "2":
+        podiums.append(result)
+      if result == "3":
+        podiums.append(result)
 
   resultpodium = {"First place: ":podiums.count("1"), "Second place: ":podiums.count("2"), "Third place: ":podiums.count("3")}
   return resultpodium
@@ -302,6 +310,6 @@ def master_function(driver_lname):
   return all_results
 
 if __name__ == "__main__":
-    user_input = input("driver name: ")
-    results = master_function(user_input)
-    print(results)
+  user_input = input("driver name: ")
+  results = master_function(user_input)
+  print(results)
