@@ -87,68 +87,28 @@ def podium_result(driver_lname):
   """
 
   circuit=["yas_marina","jeddah","bahrain","catalunya","istanbul","americas","sochi","monza","zandvoort","spa","hungaroring","silverstone","ricard","BAK","rodriguez","interlagos","losail","monaco","portimao","imola", "red_bull_ring"]
-
+  circuitraikkonen= ["yas_marina","jeddah","bahrain","catalunya","istanbul","americas","sochi","spa","hungaroring","silverstone","ricard","BAK","rodriguez","interlagos","losail","monaco","portimao","imola", "red_bull_ring"]
   podiums=[]
 
-  for track in circuit:
-    request_url = f"https://ergast.com/api/f1/2021/drivers/{driver_lname}/circuits/{track}/results.json"
-    response = requests.get(request_url)
-    parsed_response = json.loads(response.text)
-    result = parsed_response['MRData']['RaceTable']['Races'][0]["Results"][0]["position"]
-    if result == "1":
-      podiums.append(result)
-    if result == "2":
-      podiums.append(result)
-    if result == "3":
-      podiums.append(result)
+  if driver_lname != "raikkonen":
+    for track in circuit:
+      request_url = f"https://ergast.com/api/f1/2021/drivers/{driver_lname}/circuits/{track}/results.json"
+      response = requests.get(request_url)
+      parsed_response = json.loads(response.text)
+      result = parsed_response['MRData']['RaceTable']['Races'][0]["Results"][0]["position"]
+      if result == "1":
+        podiums.append(result)
+      if result == "2":
+        podiums.append(result)
+      if result == "3":
+        podiums.append(result)
+  else:
+    for track in circuitraikkonen:
+      request_url = f"https://ergast.com/api/f1/2021/drivers/{driver_lname}/circuits/{track}/results.json"
+
 
   resultpodium = {"First place: ":podiums.count("1"), "Second place: ":podiums.count("2"), "Third place: ":podiums.count("3")}
   return resultpodium
-
-def qualifying_time(circuit):
-  """
-  Determines a driver's fastest qualifying time.
-
-  
-  """
-    
-  drivers=["bottas","hamilton","max_verstappen","norris","ricciardo","gasly","sainz","leclerc","perez","giovinazzi","vettel","stroll","alonso","ocon","russell","latifi","tsunoda","mick_schumacher","kubica","mazepin"]
-
-  qual_times={}
-  for driver in drivers:
-      request_url = f"https://ergast.com/api/f1/2021/drivers/{driver}/circuits/{circuit}/qualifying.json"
-      response = requests.get(request_url)
-      parsed_response = json.loads(response.text)
-
-      times = parsed_response['MRData']['RaceTable']['Races'][0]["QualifyingResults"][0]
-
-      t1= "Q1"
-      t2= "Q2"
-      t3= "Q3"
-
-      if t1 in times:
-        time= parsed_response['MRData']['RaceTable']['Races'][0]["QualifyingResults"][0]["Q1"]
-        qual_times[driver]=time
-      else:
-        pass
-
-      if t2 in times:
-        time2= parsed_response['MRData']['RaceTable']['Races'][0]["QualifyingResults"][0]["Q2"]
-        qual_times[driver]=time2
-      else:
-        pass
-
-      if t3 in times:
-        time3= parsed_response['MRData']['RaceTable']['Races'][0]["QualifyingResults"][0]["Q3"]
-        qual_times[driver]=time3
-      else:
-        pass
-
-  key_min = min(qual_times.keys(), key=(lambda k: qual_times[k]))
-  drivername= min(qual_times, key=qual_times.get)
-  drivertime= qual_times[key_min]
-  qualdriver= {drivername:drivertime}
-  return qualdriver
 
 def avg_pitstop_time(driver_lname):
   """
