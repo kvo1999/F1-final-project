@@ -1,11 +1,5 @@
 from app.all_functions import reason_DNF
 
-#drivers=["bottas","hamilton","max_verstappen","norris","ricciardo","gasly","sainz"
-#,"leclerc","perez","giovinazzi","vettel","stroll","alonso","ocon","russell",
-#"latifi","tsunoda","mick_schumacher","kubica","mazepin"]
-
-
-
 def test_reason_DNF():
     assert reason_DNF(driver_lname="bottas") == {"Finishing Status": ['Finished', 'Collision', '+2 Laps', 'Wheel nut', 'Damage'], "Count": ['17','2','1','1','1']}
     assert reason_DNF(driver_lname="hamilton") == {"Finishing Status": ['Finished', 'Collision'], "Count": ['21','1']}
