@@ -194,7 +194,7 @@ def to_seconds(time):
 
 def lap_time_stats(driver_lname):
   """
-  Calculates a driver's fastest lap time and average lap time.
+  Calculates a driver's fastest lap time and average lap time, rounded to 3 decimal places.
 
   Parameters:
     driver_lname (str): the last name of a driver, like "alonso"
