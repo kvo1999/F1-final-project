@@ -53,3 +53,15 @@ form with 2 drop downs and submission button
 #get data back 
 #that route will render another page
 #pass driver data to page (FROM FUNCTIONS)
+
+
+## Testing
+
+Running tests:
+
+```sh
+pytest
+
+in CI mode:
+CI=true pytest
+```

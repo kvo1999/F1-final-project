@@ -132,7 +132,7 @@ def podium_result(driver_lname):
 
 def avg_pitstop_time(driver_lname):
   """
-  Calculates a driver's average pitstop time for the season.
+  Calculates a driver's average pitstop time for the season, rounded to 3 decimal places.
 
   Parameters:
     driver_lname (str): the last name of a driver, like "alonso"
