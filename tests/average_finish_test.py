@@ -1,10 +1,5 @@
 from app.all_functions import average_finish
 
-#drivers=["bottas","hamilton","max_verstappen","norris","ricciardo","gasly","sainz"
-#,"leclerc","perez","giovinazzi","vettel","stroll","alonso","ocon","russell",
-#"latifi","tsunoda","mick_schumacher","kubica","mazepin"]
-
-
 def test_average_finish():
     assert average_finish(driver_lname="bottas") == {"Average Starting Grid": 6, "Average Finishing Position": 7}
     assert average_finish(driver_lname="hamilton") == {"Average Starting Grid": 3, "Average Finishing Position": 3}

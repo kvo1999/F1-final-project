@@ -10,7 +10,7 @@ def average_finish(driver_lname):
   """
   Calculates a driver's average starting grid position and average finishing position.
 
-  Params:
+  Parameters:
     driver_lname (str): a string of the driver's last name, like "alonso"
   
   Returns:
@@ -49,11 +49,11 @@ def reason_DNF(driver_lname):
   """
   Outlines all the reasons a driver did not finish a race and how many times this happened to them.
 
-  Params:
+  Parameters:
     driver_lname (str): a string of the driver's last name, like "alonso"
 
   Returns:
-    resultDNF (dict): a dictionary containing two key-value pairs:
+    resultDNF (dict): a dictionary containing two key-value pairs: {"Finishing Status": status, "Count": count}
       status (list): a list of all the driver's finishing statuses
       count (list): a list corresponding the number of times a driver had a certain finishing status
     
@@ -82,8 +82,20 @@ def reason_DNF(driver_lname):
 
 def podium_result(driver_lname):
   """
-  
+  Calculates the total number of times a driver came in first, second, and third place each.
 
+  Paramters:
+    driver_lname (str): a string of the driver's last name, like "alonso"
+  
+  Returns:
+    resultpodium (dict): a dictionary containing three key-value pairs:
+      {"First place: ":podiums.count("1"), "Second place: ":podiums.count("2"), "Third place: ":podiums.count("3")}
+        podiums.count("1") (int): an integer corresponding the the total number of times a driver got first place
+        podiums.count("2") (int): an integer corresponding to the total number of times a driver got second place
+        podiums.count("3") (int): an integer corresponding to the total number of times a driver got third place
+
+  Invoke like this: podium_result("alonso")
+  Example return value: {"First place: 8, "Second place: ": 0, "Third place: ": 1}
   """
 
   circuit=["yas_marina","jeddah","bahrain","catalunya","istanbul","americas","sochi","monza","zandvoort","spa","hungaroring","silverstone","ricard","BAK","rodriguez","interlagos","losail","monaco","portimao","imola", "red_bull_ring"]
@@ -114,13 +126,14 @@ def avg_pitstop_time(driver_lname):
   """
   Calculates a driver's average pitstop time for the season.
 
-  Params:
+  Parameters:
     driver_lname (str): the last name of a driver, like "alonso"
   
   Returns:
-    avg_time (float): a float of the driver's average pitstop time 
+    avg_season_time (float): a float of the driver's average pitstop time 
 
   Invoke like this: avg_pitstop_time("alonso")
+  Example return value: 115.689
   """
   r = 1
   times_per_round = []
@@ -156,12 +169,13 @@ def to_seconds(time):
   Converts a string of time into a float of the number of seconds.
 
   Parameters:
-    time (str): a string that corresponds to time, either in the format MM:SS.sss or SS.sss
+    time (str): a string that corresponds to time, either in the format MM:SS, MM:SS.sss, or SS.sss
 
   Returns:
     time (float): a float of the number of seconds
 
-  Invoke like this: to_seconds("34:18.580")
+  Invoke like this: to_seconds("34:18.58")
+  Example return value: 2058.58
   """
   if ":" in time:
 
@@ -186,9 +200,12 @@ def lap_time_stats(driver_lname):
     driver_lname (str): the last name of a driver, like "alonso"
 
   Returns:
-    result (dict): a dictionary containing a driver's fastest lap time and average lap time
+    resultlap (dict): a dictionary containing two key-value pairs: {"Fastest Lap Time": fastest_time, "Average Lap Time": average_time}
+      fastest_time (float): a float of the driver's fastest lap time
+      average_time (float): a float of the driver's average lap time
 
   Invoke like this: lap_time_stats("alonso")
+  Example return value: {"Fastest Lap Time": 74.389, "Average Lap Time": 115.536}
   """
   results_url = "https://ergast.com/api/f1/2021/drivers/" + driver_lname.lower() + "/results.json"
   response = requests.get(results_url)
@@ -221,18 +238,68 @@ def lap_time_stats(driver_lname):
 
 def master_function(driver_lname):
   """
-  
+  Gathers all the stats for a driver.
 
+  Parameters:
+    driver_lname (str): the last name of a driver, like "alonso"
+
+  Returns:
+    all_results (dict): a dictionary of all the driver's stats, with 10-value pairs: {
+      "average grid": resultfin["Average Starting Grid"],
+      "average finishing": resultfin["Average Finishing Position"],
+      "finishing status": resultDNF["Finishing Status"],
+      "count of finishing status": resultDNF["Count"],
+      "first place count": resultpodium["First place: "],
+      "second place count": resultpodium["Second place: "],
+      "third place count": resultpodium["Third place: "],
+      "average pitstop": avg_season_time,
+      "fastest lap time": resultlap["Fastest Lap Time"],
+      "average lap time": resultlap["Average Lap Time"]
+    }
+      resultfin["Average Starting Grid"] (int): an integer of the driver's average starting grid position
+      resultfin["Average Finishing Position"] (int): an integer of the driver's average finishing position
+      resultDNF["Finishing Status"] (list): a list of all the driver's finishing statuses
+      resultDNF["Count"] (list): a list corresponding the number of times a driver had a certain finishing status
+      resultpodium["First place: "] (int): an integer corresponding the the total number of times a driver got first place
+      resultpodium["Second place: "] (int): an integer corresponding to the total number of times a driver got second place
+      resultpodium["Third place: "] (int): an integer corresponding to the total number of times a driver got third place
+      avg_season_time (float): a float of the driver's average pitstop time
+      resultlap["Fastest Lap Time"] (float): a float of the driver's fastest lap time
+      resultlap["Average Lap Time"] (float): a float of the driver's average lap time
+
+  Invoke like this: master_function("alonso")
+  Example return value: {
+        "average grid": 10,
+        "average finishing": 10,
+        "finishing status": ['Finished', '+1 Lap', 'Brakes', 'Rear wing'],
+        "count of finishing status": ['11','9','1','1'],
+        "first place count": 0,
+        "second place count": 0,
+        "third place count": 1,
+        "average pitstop": 244.165,
+        "fastest lap time": 75.026,
+        "average lap time": 110.989
+  }
   """
-    resultfin= average_finish(driver_lname)
-    resultDNF= reason_DNF(driver_lname)
-    resultpodium= podium_result(driver_lname)
-    avg_season_time= avg_pitstop_time(driver_lname)
-    resultlap= lap_time_stats(driver_lname)
+  resultfin= average_finish(driver_lname)
+  resultDNF= reason_DNF(driver_lname)
+  resultpodium= podium_result(driver_lname)
+  avg_season_time= avg_pitstop_time(driver_lname)
+  resultlap= lap_time_stats(driver_lname)
 
-    all_results = {"average_finish": resultfin, "reasons_DNF":resultDNF, "podium_results":resultpodium, "avg_pitstop":avg_season_time, "lap_results":resultlap}
+  all_results = {"average grid": resultfin["Average Starting Grid"],
+                  "average finishing": resultfin["Average Finishing Position"],
+                  "finishing status": resultDNF["Finishing Status"],
+                  "count of finishing status": resultDNF["Count"],
+                  "first place count": resultpodium["First place: "],
+                  "second place count": resultpodium["Second place: "],
+                  "third place count": resultpodium["Third place: "],
+                  "average pitstop": avg_season_time,
+                  "fastest lap time": resultlap["Fastest Lap Time"],
+                  "average lap time": resultlap["Average Lap Time"]
+  }
 
-    return all_results
+  return all_results
 
 if __name__ == "__main__":
     user_input = input("driver name: ")
