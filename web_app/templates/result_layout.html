@@ -3,12 +3,65 @@
 
 {% block content %}
 
-    <h2>Driver Statistics</h2>
+    <h1>Is he the (F)1 for you? Judge for yourself!</h1>
 
-    <p>Driver: {{ driver_lname }}</p>
+    <p></p>
+    <p></p>
+    <p></p>
+
+    <h1><u>{{driver['name']}}</u></h1>
+    <p></p>
+    <img src="{{driver['image']}}" width="300" height="200"> 
+
+    <p></p>
+    <p></p>
+    <p></p>
+
+
+    <u></u><h2>Average perfomance:</h2>
+
+    <table style="width:30%">
+        <tr>
+            <td><h5>Average Starting Grid</h5></td>
+            <td><h5>{{results['average_finish']['Average Starting Grid']}}</h5></td>
+        </tr>
+        <tr>
+            <td><h5>Average Finish Position   </h5></td>
+            <td><h5>{{results['average_finish']['Average Finishing Position']}}</h5></td>
+        </tr>
+    </table>
+
+
+    <p></p>
+    <p></p>
+
+    <h2> Number of Podiums </h2>
+    <table style="width:15%">
+        <tr>
+            <td><h5 style="color:gold;">1st place</h5></td>
+            <td><h5>{{results['podium_results']['First place: ']}}</h5></td>
+        </tr>
+        <tr>
+            <td><h5 style="color:silver;">2nd place</h5></td>
+            <td><h5>{{results['podium_results']['Second place: ']}}</h5></td>
+        </tr>
+        <tr>
+            <td><h5 style="color:brown">3rd place</h5></td>
+            <td><h5>{{results['podium_results']['Third place: ']}}</h5></td>
+        </tr>
+    </table>
+    
+    <p></p>
+    <p></p>
+
+
+    <h2> How they finished/DNF the race:</h2>
     
     <ul>
-        <li>{{ results }}</li>
+    {% for x in results["reasons_DNF"] %}
+        <li><h5>{{ x["status"] }} | {{ x["count"] }}</h5></li>
+    {% endfor %}
     </ul>
 
 {% endblock %}
+

@@ -10,10 +10,10 @@
       text-decoration: none;
       display: inline-block;
       font-size: 16px;
-      margin: 10px 10px;
+      margin: 0px px;
       cursor: pointer;
       height:75px;
-      width:300px;
+      width:250px;
     }
     .button1 {background-color: #00D2BE;} /* Mercedes */
     .button2 {background-color: #DC0000;} /* Ferrari */
@@ -25,28 +25,80 @@
     .button8 {background-color: #FF8700;} /* McLaren */
     .button9 {background-color: #900000;} /* Alpha Romeo */
     .button10 {background-color: #005AFF;} /* Williams */
+
+    .table, th, td {
+        border:1px white;}
+    
+    .image{
+    	height: 225px;
+        width: 250px;
+        }
 </style>
-    <h2>Driver Statistics Forms</h2>
-    <p>Request a statistics summary for an F1 driver...</p>
-        <a class="button button1" href="/drivers/hamilton" role="button">Hamilton</a>
-        <a class="button button1" href="/drivers/bottas" role="button">Bottas</a>
-        <a class="button button3" href="/drivers/max_verstappen" role="button">Verstappen</a>
-        <a class="button button3" href="/drivers/perez" role="button">Perez</a>
-        <a class="button button2" href="/drivers/leclerc" role="button">Leclerc</a>
-        <a class="button button2" href="/drivers/sainz" role="button">Sainz</a>
-        <a class="button button8" href="/drivers/norris" role="button">Norris</a>
-        <a class="button button8" href="/drivers/ricciardo" role="button">Ricciardo</a>
-        <a class="button button4" href="/drivers/alonso" role="button">Alonso</a>
-        <a class="button button4" href="/drivers/ocon" role="button">Ocon</a>
-        <a class="button button7" href="/drivers/gasly" role="button">Gasly</a>
-        <a class="button button7" href="/drivers/tsunoda" role="button">Tsunoda</a>
-        <a class="button button6" href="/drivers/vettel" role="button">Vettel</a>
-        <a class="button button6" href="/drivers/stroll" role="button">Vettel</a>
-        <a class="button button10" href="/drivers/russell" role="button">Russell</a>
-        <a class="button button10" href="/drivers/latifi" role="button">Latifi</a>
-        <a class="button button9" href="/drivers/Giovinazzi" role="button">Giovinazzi</a>
-        <a class="button button9" href="/drivers/raikkonen" role="button">Raikkonen</a>
-        <a class="button button5" href="/drivers/mick_schumacher" role="button">Schumacher</a>
-        <a class="button button5" href="/drivers/mazepin" role="button">Mazepin</a>
-    </form>
+    
+<h2>Is he the (F)1 for you? Meet the contenders</h2>
+    <p>Click the button to receive key statistics. Note: if their photo has a white background, they are no longer racing in F1.</p>
+    <table>
+        <tr>
+            <td><img class="image" src= "https://www.formula1.com/content/fom-website/en/drivers/lewis-hamilton/_jcr_content/image.img.1920.medium.jpg/1647334259839.jpg"></td>
+            <td><img class="image" src= "https://www.formula1.com/content/fom-website/en/drivers/valtteri-bottas/_jcr_content/image.img.1920.medium.jpg/1646819266274.jpg"></td>
+            <td><img class="image" src= "https://www.formula1.com/content/fom-website/en/drivers/max-verstappen/_jcr_content/image.img.1920.medium.jpg/1646819045507.jpg"</td>
+            <td><img class="image" src= "https://www.formula1.com/content/fom-website/en/drivers/sergio-perez/_jcr_content/image.img.1024.medium.jpg/1646819228700.jpg"</td>
+        </tr>
+        <tr>
+            <td> <a class="button button1" href="/drivers/hamilton" role="button">Hamilton</a> </td>
+            <td> <a class="button button1" href="/drivers/bottas" role="button">Bottas *now at Alpha Romeo</a> </td>
+            <td> <a class="button button3" href="/drivers/max_verstappen" role="button">Verstappen</a> </td>
+            <td> <a class="button button3" href="/drivers/perez" role="button">Perez</a> <td>
+        </tr>
+        <tr>
+            <td><img class="image" src="https://www.formula1.com/content/fom-website/en/drivers/charles-leclerc/_jcr_content/image.img.1024.medium.jpg/1646818893219.jpg" </td>
+            <td><img class="image" src="https://www.formula1.com/content/fom-website/en/drivers/carlos-sainz/_jcr_content/image.img.1024.medium.jpg/1646818866749.jpg" </td>
+            <td><img class="image" src="https://www.formula1.com/content/fom-website/en/drivers/lando-norris/_jcr_content/image.img.1024.medium.jpg/1646819013197.jpg" </td>
+            <td><img class="image" src="https://www.formula1.com/content/fom-website/en/drivers/daniel-ricciardo/_jcr_content/image.img.1024.medium.jpg/1646818924510.jpg" </td>
+        </tr>
+        <tr>
+            <td> <a class="button button2" href="/drivers/leclerc" role="button">Leclerc</a> </td>
+            <td> <a class="button button2" href="/drivers/sainz" role="button">Sainz</a> </td>
+            <td> <a class="button button8" href="/drivers/norris" role="button">Norris</a> </td>
+            <td> <a class="button button8" href="/drivers/ricciardo" role="button">Ricciardo</a> </td>
+        </tr>
+        <tr>
+            <td><img class="image" src="https://www.formula1.com/content/fom-website/en/drivers/fernando-alonso/_jcr_content/image.img.1024.medium.jpg/1647334212592.jpg" </td>
+            <td><img class="image" src="https://www.formula1.com/content/fom-website/en/drivers/esteban-ocon/_jcr_content/image.img.1024.medium.jpg/1647334188097.jpg" </td>
+            <td><img class="image" src="https://www.formula1.com/content/fom-website/en/drivers/pierre-gasly/_jcr_content/image.img.1024.medium.jpg/1646819179303.jpg" </td>
+            <td><img class="image" src="https://www.formula1.com/content/fom-website/en/drivers/yuki-tsunoda/_jcr_content/image.img.1024.medium.jpg/1648134405786.jpg" </td>
+        </tr>
+        <tr>
+            <td> <a class="button button4" href="/drivers/alonso" role="button">Alonso</a> </td>
+            <td> <a class="button button4" href="/drivers/ocon" role="button">Ocon</a> </td>
+            <td> <a class="button button7" href="/drivers/gasly" role="button">Gasly</a> </td>
+            <td> <a class="button button7" href="/drivers/tsunoda" role="button">Tsunoda</a> </td>
+        </tr>
+        <tr>
+            <td><img class="image" src="https://www.formula1.com/content/fom-website/en/drivers/sebastian-vettel/_jcr_content/image.img.1024.medium.jpg/1646818813887.jpg"</td>
+            <td><img class="image" src="https://www.formula1.com/content/fom-website/en/drivers/lance-stroll/_jcr_content/image.img.1024.medium.jpg/1648135171947.jpg"</td>
+            <td><img class="image" src="https://www.formula1.com/content/fom-website/en/drivers/george-russell/_jcr_content/image.img.1024.medium.jpg/1646750994602.jpg"</td>
+            <td><img class="image" src="https://www.formula1.com/content/fom-website/en/drivers/nicholas-latifi/_jcr_content/image.img.1024.medium.jpg/1646819118069.jpg"</td>
+        </tr>
+        <tr>
+            <td> <a class="button button6" href="/drivers/vettel" role="button">Vettel</a> </td>
+            <td> <a class="button button6" href="/drivers/stroll" role="button">Stroll</a> </td>
+            <td> <a class="button button10" href="/drivers/russell" role="button">Russell *now at Mercedes</a> </td>
+            <td> <a class="button button10" href="/drivers/latifi" role="button">Latifi</a> </td>
+        </tr>
+        <tr>
+            <td><img class="image" src="https://www.cymotorsport.com/wp-content/uploads/2019/10/Formula-1-Driver-Antonio-Giovinazzi-Cranky-Yankee-F1.png"</td>
+            <td><img class="image" src="https://pbs.twimg.com/profile_images/1363819174892613634/JwmNe7Ex_400x400.jpg"</td>
+            <td><img class="image" src="https://www.formula1.com/content/fom-website/en/drivers/mick-schumacher/_jcr_content/image.img.1024.medium.jpg/1647334235171.jpg"</td>
+            <td><img class="image" src="https://i0.wp.com/www.mostlyf1.com/wp-content/uploads/2021/03/Nikita-Mazepin-2021.png?resize=412%2C412&ssl=1"</td>
+        </tr>
+        <tr>
+            <td> <a class="button button9" href="/drivers/Giovinazzi" role="button">Giovinazzi</a> </td>
+            <td> <a class="button button9" href="/drivers/raikkonen" role="button">Raikkonen</a> </td>
+            <td> <a class="button button5" href="/drivers/mick_schumacher" role="button">Schumacher</a> </td>
+            <td> <a class="button button5" href="/drivers/mazepin" role="button">Mazepin</a> </td>
+        </tr>
+        
+    </table>
+
 {% endblock %}
