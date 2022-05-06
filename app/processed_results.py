@@ -1,3 +1,5 @@
+#processes csv file so data is usable in route 
+
 import csv
 import pandas 
 import os 
@@ -13,7 +15,6 @@ with open("driverresults.csv") as file_obj:
     for row in reader_obj:
         drivers.append(row)
 
-#print(drivers)
 
 def processed_data(driver_lname):
     if driver_lname=="hamilton":
@@ -57,9 +58,11 @@ def processed_data(driver_lname):
     elif driver_lname=="raikonnen":
         result= drivers[19]
     
+    
     return result
 
-
+results=processed_data("hamilton")
+print(results)
 
 
 
