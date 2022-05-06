@@ -2,39 +2,12 @@ from app.all_functions import master_function
 
 def test_master_function():
     assert master_function("alonso") == {
-        "average grid": 10,
-        "average finishing": 10,
-        "finishing status": ['Finished', '+1 Lap', 'Brakes', 'Rear wing'],
-        "count of finishing status": ['11','9','1','1'],
-        "first place count": 0,
-        "second place count": 0,
-        "third place count": 1,
-        "average pitstop": 244.165,
-        "fastest lap time": 75.026,
-        "average lap time": 110.989
+        'average grid': 10, 'average finishing': 10, 'reason DNF': [{'statusId': '1', 'count': '11', 'status': 'Finished'}, {'statusId': '11', 'count': '9', 'status': '+1 Lap'}, {'statusId': '23', 'count': '1', 'status': 'Brakes'}, {'statusId': '65', 'count': '1', 'status': 'Rear wing'}], 'first place count': 0, 'second place count': 0, 'third place count': 1, 'number of fastest laps': 0
   }
     assert master_function("bottas") == {
-        "average grid": 6,
-        "average finishing": 7,
-        "finishing status": ['Finished', 'Collision', '+2 Laps', 'Wheel nut', 'Damage'],
-        "count of finishing status": ['17','2','1','1','1'],
-        "first place count": 1,
-        "second place count": 0,
-        "third place count": 9,
-        "average pitstop": 180.157,
-        "fastest lap time": 69.707,
-        "average lap time": 94.819
+       'average grid': 6, 'average finishing': 7, 'reason DNF': [{'statusId': '1', 'count': '17', 'status': 'Finished'}, {'statusId': '4', 'count': '2', 'status': 'Collision'}, {'statusId': '12', 'count': '1', 'status': '+2 Laps'}, {'statusId': '61', 'count': '1', 'status': 'Wheel nut'}, {'statusId': '137', 'count': '1', 'status': 'Damage'}], 'first place count': 1, 'second place count': 0, 'third place count': 9, 'number of fastest laps': 4
   }
     
     assert master_function("hamilton") == {
-        "average grid": 3,
-        "average finishing": 3,
-        "finishing status": ['Finished', 'Collision'],
-        "count of finishing status": ['21','1'],
-        "first place count": 8,
-        "second place count": 8,
-        "third place count": 1,
-        "average pitstop": 214.771,
-        "fastest lap time": 72.909,
-        "average lap time": 92.733
+        'average grid': 3, 'average finishing': 3, 'reason DNF': [{'statusId': '1', 'count': '21', 'status': 'Finished'}, {'statusId': '4', 'count': '1', 'status': 'Collision'}], 'first place count': 8, 'second place count': 8, 'third place count': 1, 'number of fastest laps': 6
   }
