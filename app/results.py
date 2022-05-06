@@ -3,7 +3,7 @@
 from app.all_functions import average_finish
 from app.all_functions import reason_DNF
 from app.all_functions import podium_result
-from app.all_functions import to_seconds
+from app.all_functions import fastestlaps
 
 import csv
 
@@ -14,13 +14,13 @@ for driver in drivers:
     resultfin= average_finish(driver)
     resultDNF= reason_DNF(driver)
     resultpodium= podium_result(driver)
-    #resultlap= min_lap_time_stats(driver)
+    laps = fastestlaps(driver)
     
     #write results to csv file
-    globals()[f"result{driver}"] = [driver, resultfin, resultDNF, resultpodium]
+    globals()[f"result{driver}"] = [driver, resultfin, resultDNF, resultpodium,laps]
 
 
-header = ['Driver Name', 'Average Finish', 'Reason for DNF', 'Podium Results']
+header = ['Driver Name', 'Average Finish', 'Reason for DNF', 'Podium Results', "Fastest Laps"]
 data= [
     resulthamilton,
     resultbottas,

@@ -152,32 +152,29 @@ def master_function(driver_lname):
     all_results (dict): a dictionary of all the driver's stats, with 10-value pairs: {
       "average grid": resultfin["Average Starting Grid"],
       "average finishing": resultfin["Average Finishing Position"],
-      "finishing status": resultDNF["Finishing Status"],
-      "count of finishing status": resultDNF["Count"],
+      "reason DNF": resultDNF
       "first place count": resultpodium["First place: "],
       "second place count": resultpodium["Second place: "],
       "third place count": resultpodium["Third place: "],
-      "fastest lap time": resultlap["Fastest Lap Time"],
+      "number of fastest laps": laps
     }
       resultfin["Average Starting Grid"] (int): an integer of the driver's average starting grid position
       resultfin["Average Finishing Position"] (int): an integer of the driver's average finishing position
-      resultDNF["Finishing Status"] (list): a list of all the driver's finishing statuses
-      resultDNF["Count"] (list): a list corresponding the number of times a driver had a certain finishing status
+      resultDNF (list): list of dictionaries that outline the reason for not finishing a race + how many occurances 
       resultpodium["First place: "] (int): an integer corresponding the the total number of times a driver got first place
       resultpodium["Second place: "] (int): an integer corresponding to the total number of times a driver got second place
       resultpodium["Third place: "] (int): an integer corresponding to the total number of times a driver got third place
-      resultlap["Fastest Lap Time"] (float): a float of the driver's fastest lap time
+      laps (int): an integer count of the number of times a driver has had the fastest lap in the 2021 season
 
   Invoke like this: master_function("alonso")
   Example return value: {
         "average grid": 10,
         "average finishing": 10,
-        "finishing status": ['Finished', '+1 Lap', 'Brakes', 'Rear wing'],
-        "count of finishing status": ['11','9','1','1'],
+        "reason DNF": [{'statusId': '1', 'count': '17', 'status': 'Finished'}, {'statusId': '4', 'count': '2', 'status': 'Collision'}, {'statusId': '12', 'count': '1', 'status': '+2 Laps'}, {'statusId': '61', 'count': '1', 'status': 'Wheel nut'}, {'statusId': '137', 'count': '1', 'status': 'Damage'}]
         "first place count": 0,
         "second place count": 0,
         "third place count": 1,
-        "fastest lap time": 75.026,
+        "number of fastest laps: 4,
   }
   """
   resultfin= average_finish(driver_lname)
