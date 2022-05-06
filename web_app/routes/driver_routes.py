@@ -6,14 +6,16 @@ from app.all_functions import driverinfolist
 
 driver_routes = Blueprint("DRIVER", __name__)
 
+
+
 #this route runs all the functions in the web app, pulls data from API which takes a long time 
 
-#@driver_routes.route("/drivers/<driver_lname>")
-#def plswork(driver_lname):
-    #print("driver results...")
-    #results= master_function(driver_lname)
-    #driver=driverinfolist(driver_lname)
-    #return render_template("result_layout.html", results=results, driver_lname=driver_lname, driver=driver)
+@driver_routes.route("/drivers/<driver_lname>")
+def plswork(driver_lname):
+    print("driver results...")
+    results= master_function(driver_lname)
+    driver=driverinfolist(driver_lname)
+    return render_template("result_layout.html", results=results, driver_lname=driver_lname, driver=driver)
 
 
 @driver_routes.route("/driver/form")
@@ -23,10 +25,10 @@ def index():
     return render_template("driver_form.html")
 
 
-@driver_routes.route("/drivers/<driver_lname>")
-def altroute(driver_lname):
-    print("driver results...")
-    results = processed_data(driver_lname)
-    return render_template("result_layout.html", results=results, driver_lname=driver_lname)
+#@driver_routes.route("/drivers/<driver_lname>")
+#def altroute(driver_lname):
+    #print("driver results...")
+    #results = processed_data(driver_lname)
+    #return render_template("result_layout.html", results=results, driver_lname=driver_lname)
 
 
