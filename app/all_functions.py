@@ -65,22 +65,11 @@ def reason_DNF(driver_lname):
   ergast_url = f"https://ergast.com/api/f1/2021/drivers/{driver_lname}/status.json"
   ergast_response = requests.get(ergast_url)
   ergast = json.loads(ergast_response.text)
+  
+  return ergast["MRData"]["StatusTable"]["Status"]
 
-  #n = 0
-  #status = []
-  #count = []
 
-  #for line in ergast['MRData']['StatusTable']['Status']:
-  #  finish_status = ergast['MRData']['StatusTable']['Status'][n]['status']
-  #  status.append(finish_status)
-  #  number_finish_status = ergast['MRData']['StatusTable']['Status'][n]['count']
-  #  count.append(number_finish_status)
-  #  #print(finish_status, number_finish_status)
-  #  n = n + 1
-#
-  #resultDNF = {"Finishing Status": status, "Count": count}
 
-  return ergast['MRData']['StatusTable']['Status']
 
 def podium_result(driver_lname):
   """

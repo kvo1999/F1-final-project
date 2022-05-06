@@ -43,7 +43,6 @@ export FLASK_APP=web_app
 flask run
 ```
 
-
 ###
 #start with drop downs, driver names, statistics 
 form with 2 drop downs and submission button 
@@ -53,7 +52,6 @@ form with 2 drop downs and submission button
 #get data back 
 #that route will render another page
 #pass driver data to page (FROM FUNCTIONS)
-
 
 ## Testing
 
@@ -107,4 +105,5 @@ heroku run bash # login to the server
 # ... python -m app.daily_briefing # see the output, nice!
 # ... exit # logout
 ```
+
 
