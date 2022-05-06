@@ -20,7 +20,7 @@ def average_finish(driver_lname):
   Invoke like this: average_finish("alonso")
   Example return value: {"Average Starting Grid": 3, "Average Finishing Position": 5}
   """
-  
+
   ergast_url = f"https://ergast.com/api/f1/2021/drivers/{driver_lname}/results.json"
   ergast_response = requests.get(ergast_url)
   ergast = json.loads(ergast_response.text)
@@ -62,7 +62,7 @@ def reason_DNF(driver_lname):
   ergast_url = f"https://ergast.com/api/f1/2021/drivers/{driver_lname}/status.json"
   ergast_response = requests.get(ergast_url)
   ergast = json.loads(ergast_response.text)
-  
+
   return ergast["MRData"]["StatusTable"]["Status"]
 
 def podium_result(driver_lname):
@@ -118,6 +118,7 @@ def podium_result(driver_lname):
 def fastestlaps(driver_lname):
   """
   Calculates the number of "fastest laps" the driver earned over the course of the season.
+
   Parameters:
     driver_lname (str): the last name of a driver, like "alonso"
 
@@ -127,6 +128,7 @@ def fastestlaps(driver_lname):
   Invoke like this: fastestlaps("norris")
   Example return value: 1
   """
+
   results_url = f"http://ergast.com/api/f1/2021/fastest/1/drivers/{driver_lname}/races.json"
   response = requests.get(results_url)
   results_data = json.loads(response.text)
@@ -194,8 +196,6 @@ def master_function(driver_lname):
 
   return all_results
 
-#resultsDNF= [{'statusId': '1', 'count': '11', 'status': 'Finished'}, {'statusId': '11', 'count': '9', 'status': '+1 Lap'}, {'statusId': '23', 'count': '1', 'status': 'Brakes'}, {'statusId': '65', 'count': '1', 'status': 'Rear wing'}]
-
 def driverinfolist(driver_lname):
   thatlist = {'hamilton': {'name': 'Lewis Hamilton', 'image':'https://images2.minutemediacdn.com/image/fetch/w_736,h_485,c_fill,g_auto,f_auto/https%3A%2F%2Fbeyondtheflag.com%2Fwp-content%2Fuploads%2Fgetty-images%2F2021%2F01%2F1285791902-850x560.jpeg'},
                 'bottas': {'name':'Valterri Bottas', 'image':'https://www.formula1.com/content/dam/fom-website/sutton/2020/Styria/Sunday/1255748484.jpg'},
@@ -222,5 +222,6 @@ def driverinfolist(driver_lname):
 
 if __name__ == "__main__":
   user_input = input("driver name: ")
-  results = fastestlaps(user_input)
+  results = master_function(user_input)
   print(results)
+
