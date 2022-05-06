@@ -14,6 +14,7 @@ with open("driverresults.csv") as file_obj:
         drivers.append(row)
 
 #print(drivers)
+driver_lname=input("last name : ")
 
 def processed_data(driver_lname):
     if driver_lname=="hamilton":
@@ -57,8 +58,11 @@ def processed_data(driver_lname):
     elif driver_lname=="raikonnen":
         result= drivers[19]
     
+    
     return result
 
+results= processed_data(driver_lname)
+print(results)
 
 
 
