@@ -18,16 +18,14 @@ Install packages:
 pip install -r requirements.txt
 ```
 
-
-## Configuration
-
-Set environment variables using a ".env" file approach:
+## Downloading the CSV file
+First, create a csv file titled "driverresults.csv" in the root directory. 
+In your command line enter:
 
 ```sh
-touch .env
-echo KEY="..." >> .env
-
+python -m app.results
 ```
+It might take a while... We apologize! This will ensure faster processing speed when using the web app.
 
 ## Usage
 
@@ -43,15 +41,6 @@ export FLASK_APP=web_app
 flask run
 ```
 
-###
-#start with drop downs, driver names, statistics 
-form with 2 drop downs and submission button 
-#form will have method of post and action of some kind of route 
-#set up another route to handle form data 
-#route we send data to will make request to API for given name & characteristic 
-#get data back 
-#that route will render another page
-#pass driver data to page (FROM FUNCTIONS)
 
 ## Testing
 
@@ -95,15 +84,5 @@ After this configuration process is complete, you are finally ready to "deploy" 
 git push heroku main
 ```
 
-Running the Script in Production:
-Once you've deployed the source code to the Heroku server, login to the server to see the files there, and take an opportunity to test your ability to run the script that now lives on the server.
-
-```sh
-heroku run bash # login to the server
-# ... whoami # see that you are not on your local computer anymore
-# ... ls -al # optionally see the files, nice!
-# ... python -m app.daily_briefing # see the output, nice!
-# ... exit # logout
-```
 
 

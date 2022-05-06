@@ -54,6 +54,20 @@
     <p></p>
     <p></p>
 
+    <h2> Times:</h2>
+
+    <table style="width:30%">
+        <tr>
+            <td><h5>Fastest Pitstop Time</h5></td>
+            <td><h5>{{results['']}}</h5></td>
+        </tr>
+        <tr>
+            <td><h5>Fastest Lap*</h5></td>
+            <td><h5>{{results[''']}}</h5></td>
+        </tr>
+    </table>
+
+    <h6>*Fastest lap across all drivers: 66.2 seconds </h6> 
 
     <h2> How they finished/DNF the race:</h2>
     
@@ -62,6 +76,8 @@
         <li><h5>{{ x["status"] }} | {{ x["count"] }}</h5></li>
     {% endfor %}
     </ul>
+
+    
 
 {% endblock %}
 
