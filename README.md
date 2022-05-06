@@ -53,3 +53,58 @@ form with 2 drop downs and submission button
 #get data back 
 #that route will render another page
 #pass driver data to page (FROM FUNCTIONS)
+
+
+## Testing
+
+Running tests:
+
+```sh
+pytest
+
+#in CI mode:
+CI=true pytest
+```
+
+## [Deploying](/DEPLOYING.md)
+Prerequisites:
+Sign up for a Heroku account and install the Heroku CLI.
+
+```sh
+heroku login # only when you use heroku for the first time
+
+heroku apps # at this time, results might be somewhat empty
+```
+
+Server Setup:
+IMPORTANT: run the following commands from the root directory of your repository!
+Use the online Heroku Dashboard or the command-line (instructions below) to create a new application server, specifying a unique name (e.g. "notification-app-123", but yours will need to be different):
+```sh
+heroku create notification-app-123 # choose your own name
+```
+Verify the app has been created:
+```sh
+heroku apps
+```
+Verify this step has associated the local repo with a remote address called "heroku":
+```sh
+git remote -v
+```
+
+Deploying:
+After this configuration process is complete, you are finally ready to "deploy" the application's source code to the Heroku server.
+```sh
+git push heroku main
+```
+
+Running the Script in Production:
+Once you've deployed the source code to the Heroku server, login to the server to see the files there, and take an opportunity to test your ability to run the script that now lives on the server.
+
+```sh
+heroku run bash # login to the server
+# ... whoami # see that you are not on your local computer anymore
+# ... ls -al # optionally see the files, nice!
+# ... python -m app.daily_briefing # see the output, nice!
+# ... exit # logout
+```
+
