@@ -1,0 +1,70 @@
+{% extends "bootstrap_layout.html" %}
+{% set active_page = "driver_result" %}
+
+{% block content %}
+
+    <h1>Is he the F1 for you? Judge for yourself!</h1>
+
+    <p></p>
+    <p></p>
+    <p></p>
+
+    <h1><u>{{driver['name']}}</u></h1>
+    <p></p>
+    <img src="{{driver['image']}}" width="300" height="200"> 
+
+    <p></p>
+    <p></p>
+    <p></p>
+
+
+    <u></u><h2>Average perfomance:</h2>
+
+    <table style="width:20%">
+        <tr>
+            <td><h5>Average Starting Grid</h5></td>
+            <td><h5>{{result['average grid']}}</h5></td>
+        </tr>
+        <tr>
+            <td><h5>Average Finish Position </h5></td>
+            <td><h5>{{results['average finishing']}}</h5></td>
+        </tr>
+        <tr>
+            <td><h5>Number of 'Fastest Laps'</h5></td>
+            <td><h5>{{results['number of fastest laps']}}</h5></td>
+        </tr>
+    </table>
+
+
+    <p></p>
+    <p></p>
+
+    <h2> Number of Podiums </h2>
+    <table style="width:15%">
+        <tr>
+            <td><h5 style="color:gold;">1st place</h5></td>
+            <td><h5>{{results['first place count']}}</h5></td>
+        </tr>
+        <tr>
+            <td><h5 style="color:silver;">2nd place</h5></td>
+            <td><h5>{{results['second place count']}}</h5></td>
+        </tr>
+        <tr>
+            <td><h5 style="color:brown">3rd place</h5></td>
+            <td><h5>{{results['third place count']}}</h5></td>
+        </tr>
+    </table>
+    
+    <p></p>
+    <p></p>
+
+
+    <h2> How they finished/DNF the race:</h2>
+    
+    <ul>
+    {% for x in results["reason DNF"] %}
+        <li><h5>{{ x["status"] }} | {{ x["count"] }}</h5></li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -211,7 +211,7 @@ def driverinfolist(driver_lname):
                 'russell':{'name':'George Russell', 'image':'https://cloudfront-us-east-2.images.arcpublishing.com/reuters/FAOFJZETQ5I3TACINNV7CVLPPI.jpg'},
                 'latifi':{'name':'Nicholas Latifi', 'image':'https://www.formula1.com/content/dam/fom-website/Upgrade/2021FIAPoolImages/HungarySunday/WILLIAMS_HUNGARY_SUNDAY_01.jpg'},
                 'giovinazzi':{'name':'Antonio Giovinazzi', 'image':'https://d3cm515ijfiu6w.cloudfront.net/wp-content/uploads/2021/10/02104137/antonio-giovinazzi-prepares-drive-planetf1.jpg'},
-                'raikonnen':{'name':'Kimi Raikonnen', 'image':'https://s3-eu-west-1.amazonaws.com/racingnews-v2-prod/2021/Raikkonen/large-2021-Bahrain-Pre-Season-Test-7.jpg?v=1615649282'},
+                'raikkonen':{'name':'Kimi Raikkonen', 'image':'https://s3-eu-west-1.amazonaws.com/racingnews-v2-prod/2021/Raikkonen/large-2021-Bahrain-Pre-Season-Test-7.jpg?v=1615649282'},
                 'mick_schumacher':{'name':'Mick Schumacher', 'image':'https://f1-insider.com/wp-content/uploads/2021/03/Formel-1-Mick-Schumacher-Haas-2021.jpg'},
                 'mazepin':{'name':'Nikita Mazepin', 'image':'https://f1i.com/wp-content/uploads/2021/09/XPB_1111048_1200px-725x500.jpg'}}
   thatguy = thatlist[driver_lname]
